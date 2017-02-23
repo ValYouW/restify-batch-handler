@@ -1,0 +1,26 @@
+{
+  "name": "restify-batch-handler",
+  "version": "0.0.1",
+  "description": "A restify handler for batch requests",
+  "main": "index.js",
+  "dependencies": {
+    "restify-errors": "^4.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ValYouW/restify-batch-handler.git"
+  },
+  "keywords": [
+    "restify"
+  ],
+  "author": "ValYouW@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ValYouW/restify-batch-handler/issues"
+  },
+  "homepage": "https://github.com/ValYouW/restify-batch-handler#readme"
+}
