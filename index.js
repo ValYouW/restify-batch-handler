@@ -1,9 +1,14 @@
 var Errors = require('restify-errors'),
 	http = require('http');
 
+class DummySocket {
+	on() { }
+	once() { }
+}
+
 var logger = {};
 
-function nop(){}
+function nop() { }
 function setupLogger(userLogger) {
 	userLogger = userLogger || {};
 	['trace', 'info', 'warn', 'error'].forEach(l => {
@@ -13,7 +18,7 @@ function setupLogger(userLogger) {
 
 function handle(req, res, next) {
 	if (!Array.isArray(req.params.requests) || req.params.requests.length < 1) {
-		var err = new Errors.MissingParameterError('\`requests\` parameter is mandatory');
+		var err = new Errors.MissingParameterError('\`requests\` parameter is mandatory and must have at least 1 request');
 		logger.trace('Rejecting batch request due to missing \`requests\` param, url: `%s`\nheaders: %s\nparams: %s', req.url, req.headers, req.params);
 		next(err);
 		return;
@@ -44,7 +49,7 @@ function nextReq(batchReq, batchRes, i, responses) {
 }
 
 function createMockRequest(preq, batchReq) {
-	var mockReq = new http.IncomingMessage();
+	var mockReq = new http.IncomingMessage(new DummySocket());
 	mockReq.method = (typeof preq.method === 'string' && preq.method) ? preq.method.toUpperCase() : 'GET';
 	mockReq.url = preq.path;
 
@@ -80,7 +85,7 @@ function createMockResponse(mockReq, reqIndex, cb) {
 		cb(reqIndex, {
 			statusCode: this.statusCode,
 			statusMessage: this.statusMessage,
-			headers: this._headers,
+			headers: this.getHeaders(),
 			body: (this._body instanceof Error) && this._body.body ? this._body.body : this._body
 		});
 	};
