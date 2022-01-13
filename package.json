@@ -1,6 +1,6 @@
 {
   "name": "restify-batch-handler",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A restify handler for batch requests",
   "main": "index.js",
   "dependencies": {
