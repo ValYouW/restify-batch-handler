@@ -1,10 +1,10 @@
 {
   "name": "restify-batch-handler",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "A restify handler for batch requests",
   "main": "index.js",
   "dependencies": {
-    "restify-errors": "^4.3.0"
+    "restify-errors": "^8.0.2"
   },
   "devDependencies": {},
   "scripts": {

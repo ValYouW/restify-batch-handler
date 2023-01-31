@@ -70,6 +70,7 @@ function createMockRequest(preq, batchReq) {
 		// to emulate the streaming of the body
 		mockReq._read = function fakeReqRead() {
 			mockReq.push(preq.body);
+			mockReq.complete = true;
 			mockReq.push(null); // Signal that no more data is expected
 		};
 	}
